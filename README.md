@@ -12,6 +12,9 @@ python3 -m pip install -r requirements.txt
 python 3 ./src/server.py
 
 ## Access
-curl localhost:8000/api/getMembers?scope=active #get COMMUNING and NONCOMMUNING member
+#get COMMUNING and NONCOMMUNING members
 
-curl localhost:8000/api/getMembers?scope=all #get all members
+curl localhost:8000/api/getMembers?scope=active
+
+#get all members
+curl localhost:8000/api/getMembers?scope=all 
