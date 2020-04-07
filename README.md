@@ -9,7 +9,7 @@ cd pm-server-python
 python3 -m pip install -r requirements.txt
 
 ## Run
-python 3 ./src/server.py
+python3 ./src/server.py
 
 ## Access
 ### Get COMMUNING and NONCOMMUNING members
