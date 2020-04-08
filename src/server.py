@@ -17,6 +17,7 @@ log = logging.getLogger('HandlerLogger')
 class BaseHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         self.set_header('Allow-Methods', 'GET PUT POST DELETE')
+        self.set_header('Access-Control-Allow-Origin', '*')
 
     def options(self):
        self.set_status(204)
