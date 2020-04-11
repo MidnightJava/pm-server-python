@@ -1,0 +1,25 @@
+version: "2.3"
+services:
+  db:
+    image: mongo:4.0.9
+    hostname: db
+    container_name: db
+    ports:
+      - "27017:27017"
+    volumes:
+      - /opt/mongo-data:/data/db
+    #   - ./out:/out
+  python-server:
+    build: .
+    environment:
+      - DB_PORT_27017_TCP_ADDR=mongo
+      - PM_LOG_LEVEL=debug
+    hostname: python-server
+    container_name: python-server
+    volumes:
+      - /data/python-server:/src
+    ports:
+      - "8000:8000"
+    depends_on:
+        - db
+    entrypoint: "python3 server.py"

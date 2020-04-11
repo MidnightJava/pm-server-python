@@ -9,7 +9,7 @@ import logging
 import pymongo
 from pymongo import MongoClient
 
-logging.basicConfig(filename='server.log', level = logging.DEBUG)
+logging.basicConfig(filename='../log/server.log', level = logging.DEBUG)
 logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 logging.getLogger('asyncio').setLevel(logging.WARNING)
 log = logging.getLogger('HandlerLogger')
@@ -66,7 +66,7 @@ class PMServer(tornado.web.Application):
 
     def __init__(self, handlers, **settings):
         print(settings)
-        self.mongo = MongoClient(host=settings['url'], port=settings['port'])
+        self.mongo = MongoClient(host=settings['host'], port=settings['port'])
         super(PMServer, self).__init__(handlers, **settings)
 
     def signal_handler(self, signum, frame):
@@ -87,7 +87,7 @@ def mk_app(prefix=''):
         (path, FileHandler, {"path": os.getcwd()}),
         (r"/api/getMembers", GetMembersHandler)
     ]
-    settings = dict(debug=True, url='localhost', port=27017)
+    settings = dict(debug=True, host='db', port=27017)
     application = PMServer(handlers, **settings)
     return application
 
