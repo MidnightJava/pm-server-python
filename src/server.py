@@ -9,7 +9,7 @@ import logging
 import pymongo
 from pymongo import MongoClient
 
-logging.basicConfig(filename='../log/server.log', level = logging.DEBUG)
+logging.basicConfig(filename='log/server.log', level = logging.DEBUG)
 logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 logging.getLogger('asyncio').setLevel(logging.WARNING)
 log = logging.getLogger('HandlerLogger')
