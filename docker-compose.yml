@@ -17,7 +17,7 @@ services:
     hostname: python-server
     container_name: python-server
     volumes:
-      - /data/python-server:/src
+      - /data/python-server:/log
     ports:
       - "8000:8000"
     depends_on:
