@@ -1,0 +1,19 @@
+Query examples to be run on the mongo shell
+
+> user PeriMeleon
+> let col =db.households
+
+# Find all married heads of household and their spouse
+col.find({"_Household__spouse": {$exists:true}}, {"_Household__head": 1, "_Household__spouse": 1}).pretty()
+
+# Find all single heads of household
+col.find({"_Household__spouse": {$exists:false}}, {"_Household__head": 1}).pretty()
+
+# Find all heads of household and their spouse if they are married
+> col.find({}, {"_Household__head": 1, "_Household__spouse": 1}).pretty()
+
+# Find all members of a household specified by family name
+> col.find({"_Household__head._Member__family_name": "Jones"}, {"_Household__head": 1, "_Household__spouse": 1, "_Household__others": 1}).pretty()
+
+# Find all members
+> col.find({}, {"_Household__head": 1, "_Household__spouse": 1, "_Household__others": 1}).pretty()
