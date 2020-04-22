@@ -1,13 +1,17 @@
 Query examples to be run on the mongo shell
 
-> user PeriMeleon
+NB: quotes are needed around field names in a query when referencing embedded documents with
+a dot separator, so I wrapped all field names in quotes for consistency.
+
+$ mongo
+> use PeriMeleon
 > let col =db.households
 
 # Find all married heads of household and their spouse
-col.find({"_Household__spouse": {$exists:true}}, {"_Household__head": 1, "_Household__spouse": 1}).pretty()
+> col.find({"_Household__spouse": {$exists:true}}, {"_Household__head": 1, "_Household__spouse": 1}).pretty()
 
 # Find all single heads of household
-col.find({"_Household__spouse": {$exists:false}}, {"_Household__head": 1}).pretty()
+> col.find({"_Household__spouse": {$exists:false}}, {"_Household__head": 1}).pretty()
 
 # Find all heads of household and their spouse if they are married
 > col.find({}, {"_Household__head": 1, "_Household__spouse": 1}).pretty()
